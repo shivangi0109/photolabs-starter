@@ -1,6 +1,7 @@
 import React from 'react';
 
-import PhotoListItem from './components/PhotoListItem';
+// import PhotoListItem from './components/PhotoListItem';
+import PhotoList from './components/PhotoList';
 import './App.scss';
 
 const sampleDataForPhotoListItem = [
@@ -39,13 +40,9 @@ const sampleDataForPhotoListItem = [
 // Note: Rendering a single component to build components in isolation
 const App = () => {
 
-  const photoItems = sampleDataForPhotoListItem.map((data) => (
-    <PhotoListItem key={data.id} data={data} />
-  ));
-
   return (
     <div className="App">
-      {photoItems}
+      <PhotoList />
     </div>
   );
 };
