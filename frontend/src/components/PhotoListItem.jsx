@@ -6,12 +6,14 @@ const PhotoListItem = (props) => {
   const { id, location, imageSource, username, profile } = props.data;
 
   return (
-    <div>
-      <img src={props.data.imageSource} alt={`Photo by ${username}`} />
-      <div>
-        <img src={profile} alt={`Profile picture of ${username}`} />
-        <p>{username}</p>
-        <p>{location.city} {location.country}</p>
+    <div className="photo-list__item">
+      <img className="photo-list__image" src={props.data.imageSource} alt={`Photo by ${username}`} />
+      <div className="photo-list__user-details">
+        <img className="photo-list__user-profile" src={profile} alt={`Profile picture of ${username}`} />
+        <div className="photo-list__user-info">
+          {username}
+          <div className="photo-list__user-location">{location.city} {location.country}</div>
+        </div>
       </div>
     </div>
   );
