@@ -4,12 +4,12 @@ import TopicList from './TopicList';
 import PhotoFavButton from "./PhotoFavButton";
 import '../styles/TopNavigationBar.scss';
 
-const TopNavigation = () => {
+const TopNavigation = ({ topics }) => {
   return (
     <div className="top-nav-bar">
       <div className="top-nav-bar__logo">PhotoLabs</div>
       <div>
-        <TopicList />
+        <TopicList topics={topics} />
       </div>
       <div>
         <PhotoFavButton />
