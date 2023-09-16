@@ -27,7 +27,7 @@ const HomeRoute = (props) => {
   return (
     <div className="home-route">
       <TopNavigationBar topics={props.topics} favoritedPhotos={favoritedPhotos} isSelected={isSelected} />
-      <PhotoList photos={props.photos} toggleFavorite={toggleFavorite} isSelected={isSelected} />
+      <PhotoList photos={props.photos} toggleFavorite={toggleFavorite} isSelected={isSelected} openModal={props.openModal} />
     </div>
   );
 };

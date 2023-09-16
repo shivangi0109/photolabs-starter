@@ -14,6 +14,7 @@ const PhotoList = (props) => {
         photo={photo}
         toggleFavorite={() => props.toggleFavorite(photo.id)}
         selected={selected}
+        onClick={() => props.openModal(photo)}
       />
     );
   });
