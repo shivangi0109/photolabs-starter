@@ -12,16 +12,18 @@ const App = () => {
 
   // State to manage modal visibility and selected photo data
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
+  console.log(selectedPhoto);
 
   // Function to open the modal with selected photo data
   const openModal = (photoData) => {
-    // setSelectedPhoto(photoData);
+    setSelectedPhoto(photoData);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    // setSelectedPhoto(null);
+    setSelectedPhoto(null);
     setIsModalOpen(false);
   };
 
