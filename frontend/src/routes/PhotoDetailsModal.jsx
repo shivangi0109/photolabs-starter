@@ -17,7 +17,7 @@ const PhotoDetailsModal = (props) => {
 
       {/* Display larger version of selected photo */}
       <div>
-        <PhotoFavButton />
+        <PhotoFavButton onClick={() => props.toggleFavorite(props.selectedPhoto.id)} selected={props.isSelected(props.selectedPhoto.id)} />
         <img className="photo-details-modal__image" src={urls.full} alt={`Photo by ${user.name}`} />
         <div className="photo-details-modal__photographer-details">
           <img className="photo-details-modal__user-profile" src={user.profile} alt={`Profile picture of ${user.name}`} />
@@ -31,7 +31,7 @@ const PhotoDetailsModal = (props) => {
       {/* Display similar photos */}
       <h2>Similar Photos</h2>
       <div className="photo-details-modal__images">
-        <PhotoList photos={similarPhotos} isSelected={props.isSelected} />
+        <PhotoList photos={similarPhotos} isSelected={props.isSelected} toggleFavorite={props.toggleFavorite} />
       </div>
     </div>
   );
