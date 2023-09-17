@@ -5,7 +5,7 @@ import "../styles/PhotoList.scss";
 
 const PhotoList = (props) => {
 
-  const photoItems = props.photos.map((photo) => {
+  const photoItems = Array.isArray(props.photos) ? props.photos.map((photo) => {
     const selected = props.isSelected(photo.id);
 
     return (
@@ -17,7 +17,7 @@ const PhotoList = (props) => {
         onClick={() => props.openModal(photo)}
       />
     );
-  });
+  }) : [];
 
   return (
     <ul className="photo-list">

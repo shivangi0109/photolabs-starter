@@ -16,6 +16,10 @@ const App = () => {
 
   console.log(selectedPhoto);
 
+  const isSelected = (photoId) => {
+    return photoId === selectedPhoto.id;
+  };
+
   // Function to open the modal with selected photo data
   const openModal = (photoData) => {
     setSelectedPhoto(photoData);
@@ -31,7 +35,7 @@ const App = () => {
     <div className="App">
       <HomeRoute photos={photos} topics={topics} openModal={openModal} />
       {isModalOpen && (
-        <PhotoDetailsModal onClose={closeModal} />
+        <PhotoDetailsModal selectedPhoto={selectedPhoto} isSelected={isSelected} onClose={closeModal} />
       )}
     </div>
   );
