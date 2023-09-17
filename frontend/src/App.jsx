@@ -1,51 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import HomeRoute from './components/HomeRoute';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
+import useApplicationData from './hooks/useApplicationData';
 import './App.scss';
 
 // Import mock data
 import photos from './mocks/photos';
 import topics from './mocks/topics';
 
-const App = () => {
+const App = (props) => {
 
-  // State to manage modal visibility and selected photo data
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-
-  console.log(selectedPhoto);
-
-  // State to manage favorited photos across the application
-  const [favoritedPhotos, setFavoritedPhotos] = useState([]);
-
-  const toggleFavorite = (id) => {
-    if (favoritedPhotos.includes(id)) {
-      // console.log('Removing photo', id);
-      // const newFavourites = favoritedPhotos.filter(favoritedPhotoId => favoritedPhotoId !== id);
-      // console.log(newFavourites);
-      setFavoritedPhotos(favoritedPhotos.filter(favoritedPhotoId => favoritedPhotoId !== id));
-      return;
-    }
-    // console.log('Adding photo', id);
-    setFavoritedPhotos([...favoritedPhotos, id]);
-  };
-
-  const isSelected = (id) => {
-    return favoritedPhotos.includes(id);
-  };
-
-  // Function to open the modal with selected photo data
-  const openModal = (photoData) => {
-    setSelectedPhoto(photoData);
-    setIsModalOpen(true);
-  };
-
-  // Function to close the modal with selected photo data
-  const closeModal = () => {
-    setSelectedPhoto(null);
-    setIsModalOpen(false);
-  };
+  const {
+    isModalOpen,
+    selectedPhoto,
+    favoritedPhotos,
+    toggleFavorite,
+    isSelected,
+    openModal,
+    closeModal
+  } = useApplicationData();
 
   return (
     <div className="App">
