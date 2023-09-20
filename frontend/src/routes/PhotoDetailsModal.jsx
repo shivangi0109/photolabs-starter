@@ -8,8 +8,7 @@ import closeSymbol from '../assets/closeSymbol.svg';
 const PhotoDetailsModal = (props) => {
 
   const { location, urls, user, similarPhotos } = props.selectedPhoto;
-  console.log('Similar Photos Data:', similarPhotos);
-
+  
   const renderSimilarPhotos = similarPhotos ? (
     <div>
       <h2>Similar Photos</h2>
@@ -18,6 +17,7 @@ const PhotoDetailsModal = (props) => {
           photos={similarPhotos}
           isSelected={props.isSelected}
           toggleFavorite={props.toggleFavorite}
+          selectedTopicPhotos={props.selectedTopicPhotos}
         />
       </div>
     </div>

@@ -16,7 +16,7 @@ const TopNavigation = (props) => {
     <div className="top-nav-bar">
       <div className="top-nav-bar__logo">PhotoLabs</div>
       <div>
-        <TopicList topics={props.topics} />
+        <TopicList topics={props.topics} getPhotosByTopics={props.getPhotosByTopics} />
       </div>
       <div>
         <PhotoFavButton displayAlert={showNotifications} selected={props.isSelected} />

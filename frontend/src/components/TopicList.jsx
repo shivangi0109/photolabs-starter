@@ -6,7 +6,7 @@ import TopicListItem from "./TopicListItem";
 const TopicList = (props) => {
 
   const topicItems = Array.isArray(props.topics) ? props.topics.map((topic) => (
-    <TopicListItem key={topic.id} topic={topic} />
+    <TopicListItem key={topic.id} topic={topic} onClick={() => props.getPhotosByTopics(topic.id)} />
   )) : [];
 
   return (

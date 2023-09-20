@@ -9,6 +9,7 @@ export const ACTIONS = {
   CLOSE_MODAL: 'CLOSE_MODAL',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA', // New action to set photo data
   SET_TOPIC_DATA: 'SET_TOPIC_DATA', // New action to set topic data
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS' // New action to get photos by topics
 };
 
 // Define your initial state
@@ -18,6 +19,7 @@ const initialState = {
   favoritedPhotos: [],
   photoData: [], // New state for photo data
   topicData: [], // New state for topic data
+  selectedTopicPhotos: [], // New state for selectedTopicPhoto
 };
 
 // Define your reducer function
@@ -70,6 +72,12 @@ const reducer = function(state, action) {
       topicData: action.payload,
     };
 
+  case ACTIONS.GET_PHOTOS_BY_TOPICS: // New case to get photos by topics
+    return {
+      ...state,
+      selectedTopicPhotos: action.payload,
+    };
+
 
   default:
     throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
@@ -98,7 +106,19 @@ export default function useApplicationData() {
     dispatch({ type: ACTIONS.CLOSE_MODAL });
   };
 
-  // Effect to fetch photo data
+  const getPhotosByTopics = (topicId) => {
+    fetch(`/api/topics/photos/${topicId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data });
+      })
+      .catch((error) => {
+        console.error('Error fetching photo data:', error);
+      });
+  };
+
+  // Effect to fetch photo data snd topic data
   useEffect(() => {
     const fetchPhotoData = fetch('/api/photos').then((res) => res.json());
     const fetchTopicData = fetch('api/topics').then((res) => res.json());
@@ -118,6 +138,7 @@ export default function useApplicationData() {
     toggleFavorite,
     isSelected,
     openModal,
-    closeModal
+    closeModal,
+    getPhotosByTopics
   };
 }

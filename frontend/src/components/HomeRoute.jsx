@@ -8,8 +8,8 @@ const HomeRoute = (props) => {
 
   return (
     <div className="home-route">
-      <TopNavigationBar topics={props.topics} favoritedPhotos={props.favoritedPhotos} isSelected={props.isSelected} />
-      <PhotoList photos={props.photos} toggleFavorite={props.toggleFavorite} isSelected={props.isSelected} openModal={props.openModal} />
+      <TopNavigationBar topics={props.topics} favoritedPhotos={props.favoritedPhotos} isSelected={props.isSelected} getPhotosByTopics={props.getPhotosByTopics} />
+      <PhotoList photos={props.photos} toggleFavorite={props.toggleFavorite} isSelected={props.isSelected} openModal={props.openModal} selectedTopicPhotos={props.selectedTopicPhotos} />
     </div>
   );
 };
