@@ -5,9 +5,9 @@ import TopicListItem from "./TopicListItem";
 
 const TopicList = (props) => {
 
-  const topicItems = props.topics.map((topic) => (
+  const topicItems = Array.isArray(props.topics) ? props.topics.map((topic) => (
     <TopicListItem key={topic.id} topic={topic} />
-  ));
+  )) : [];
 
   return (
     <div className="top-nav-bar__topic-list">

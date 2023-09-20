@@ -5,16 +5,14 @@ import PhotoDetailsModal from './routes/PhotoDetailsModal';
 import useApplicationData from './hooks/useApplicationData';
 import './App.scss';
 
-// Import mock data
-import photos from './mocks/photos';
-import topics from './mocks/topics';
-
 const App = (props) => {
 
   const {
     isModalOpen,
     selectedPhoto,
     favoritedPhotos,
+    photoData, // Access to the fetched photo data
+    topicData, // Access to the fetched topic data
     toggleFavorite,
     isSelected,
     openModal,
@@ -23,7 +21,7 @@ const App = (props) => {
 
   return (
     <div className="App">
-      <HomeRoute photos={photos} topics={topics} openModal={openModal} favoritedPhotos={favoritedPhotos} toggleFavorite={toggleFavorite} isSelected={isSelected} />
+      <HomeRoute photos={photoData} topics={topicData} openModal={openModal} favoritedPhotos={favoritedPhotos} toggleFavorite={toggleFavorite} isSelected={isSelected} />
       {isModalOpen && (
         <PhotoDetailsModal selectedPhoto={selectedPhoto} toggleFavorite={toggleFavorite} isSelected={isSelected} onClose={closeModal} />
       )}

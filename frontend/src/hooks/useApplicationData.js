@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
 // import { useState } from 'react';
 
 // Define your action types
@@ -7,6 +7,8 @@ export const ACTIONS = {
   SET_SELECTED_PHOTO: 'SET_SELECTED_PHOTO',
   OPEN_MODAL: 'OPEN_MODAL',
   CLOSE_MODAL: 'CLOSE_MODAL',
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA', // New action to set photo data
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA', // New action to set topic data
 };
 
 // Define your initial state
@@ -14,6 +16,8 @@ const initialState = {
   isModalOpen: false,
   selectedPhoto: null,
   favoritedPhotos: [],
+  photoData: [], // New state for photo data
+  topicData: [], // New state for topic data
 };
 
 // Define your reducer function
@@ -54,6 +58,19 @@ const reducer = function(state, action) {
       isModalOpen: false,
     };
 
+  case ACTIONS.SET_PHOTO_DATA: // New case to set photo data
+    return {
+      ...state,
+      photoData: action.payload,
+    };
+
+  case ACTIONS.SET_TOPIC_DATA: // New case to set topic data
+    return {
+      ...state,
+      topicData: action.payload,
+    };
+
+
   default:
     throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
   }
@@ -80,6 +97,21 @@ export default function useApplicationData() {
   const closeModal = () => {
     dispatch({ type: ACTIONS.CLOSE_MODAL });
   };
+
+  // Effect to fetch photo data
+  useEffect(() => {
+    const fetchPhotoData = fetch('/api/photos').then((res) => res.json());
+    const fetchTopicData = fetch('api/topics').then((res) => res.json());
+
+    Promise.all([fetchPhotoData, fetchTopicData])
+      .then(([photoData, topicData]) => {
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photoData });
+        dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topicData });
+      })
+      .catch((error) => {
+        console.error('Error fetching photo data:', error);
+      });
+  }, []); // Empty dependency array for initial fetch
 
   return {
     ...state,
