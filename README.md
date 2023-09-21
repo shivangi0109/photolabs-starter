@@ -5,7 +5,17 @@ The PhotoLabs project for the Web Development React course programming.
 PhotoLabs is a React-based single-page application (SPA) that allows users to view photos in different contexts. We will use a pre-existing API to build a frontend user experience for users to interact with photos!
 
 ## Final Product
-**HomePage Photos loaded from the API:**
+**View of Homepage with All Photos**
+
+**View of Heart Icon with a notification in the navigation when photo liked**
+
+**View of Photo Modal when photo liked**
+
+**View of Similar Photos in the Photo Modal**
+
+**View of Travel photos based on the topics category(Travel)**
+
+**View of People photos based on the topics category(People)**
 
 ## Purpose
 This project was created, designed, and built by: 
