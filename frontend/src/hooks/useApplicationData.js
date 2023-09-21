@@ -110,7 +110,6 @@ export default function useApplicationData() {
     fetch(`/api/topics/photos/${topicId}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data });
       })
       .catch((error) => {
