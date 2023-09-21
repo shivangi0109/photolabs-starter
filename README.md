@@ -7,18 +7,30 @@ PhotoLabs is a React-based single-page application (SPA) that allows users to vi
 ## Final Product
 **View of Homepage with All Photos**
 
+!["View of Homepage with All Photos"](https://github.com/shivangi0109/photolabs-starter/blob/main/docs/home-page-photos-screenshot.png)
+
 **View of Heart Icon with a notification in the navigation when photo liked**
+
+!["View of Heart Icon with a notification in the navigation when photo liked"](https://github.com/shivangi0109/photolabs-starter/blob/main/docs/heart-icon-with-notification-when-photo-liked.png)
 
 **View of Photo Modal when photo liked**
 
+!["View of Photo Modal when photo liked"](https://github.com/shivangi0109/photolabs-starter/blob/main/docs/open-photo-modal-when-liked.png)
+
 **View of Similar Photos in the Photo Modal**
+
+!["View of Similar Photos in the Photo Modal"](https://github.com/shivangi0109/photolabs-starter/blob/main/docs/show-similar-photos-within-modal.png)
 
 **View of Travel photos based on the topics category(Travel)**
 
+!["View of Travel photos based on the topics category(Travel)"](https://github.com/shivangi0109/photolabs-starter/blob/main/docs/travel-photos.png)
+
 **View of People photos based on the topics category(People)**
 
+!["View of People photos based on the topics category(People)"](https://github.com/shivangi0109/photolabs-starter/blob/main/docs/people-photos.png)
+
 ## Purpose
-This project was created, designed, and built by: 
+This project was created, designed, and built by:
 * [shivangi0109](https://github.com/shivangi0109)
 
 for Web Development React learning purpose at [Lighthouse Labs](https://www.lighthouselabs.ca/en/web-development-flex-program).
