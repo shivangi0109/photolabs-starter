@@ -9,7 +9,9 @@ export const ACTIONS = {
   CLOSE_MODAL: 'CLOSE_MODAL',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA', // New action to set photo data
   SET_TOPIC_DATA: 'SET_TOPIC_DATA', // New action to set topic data
-  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS' // New action to get photos by topics
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS', // New action to get photos by topics
+  SEARCH_PHOTOS: 'SEARCH_PHOTOS',
+  TYPE_SEARCH: 'TYPE_SEARCH'
 };
 
 // Define your initial state
@@ -20,6 +22,8 @@ const initialState = {
   photoData: [], // New state for photo data
   topicData: [], // New state for topic data
   selectedTopicPhotos: [], // New state for selectedTopicPhoto
+  searchResults: [],
+  searchFormInput: ''
 };
 
 // Define your reducer function
@@ -78,6 +82,18 @@ const reducer = function(state, action) {
       selectedTopicPhotos: action.payload,
     };
 
+  case ACTIONS.SEARCH_PHOTOS: // New case to get photos by topics
+    return {
+      ...state,
+      searchResults: action.payload,
+    };
+
+  case ACTIONS.TYPE_SEARCH: // New case to get photos by topics
+    return {
+      ...state,
+      searchFormInput: action.payload,
+    };
+
 
   default:
     throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
@@ -107,6 +123,7 @@ export default function useApplicationData() {
   };
 
   const getPhotosByTopics = (topicId) => {
+    dispatch({ type: ACTIONS.SEARCH_PHOTOS, payload: [] });
     fetch(`/api/topics/photos/${topicId}`)
       .then((res) => res.json())
       .then((data) => {
@@ -115,6 +132,21 @@ export default function useApplicationData() {
       .catch((error) => {
         console.error('Error fetching photo data:', error);
       });
+  };
+
+  const searchPhotos = (searchValue) => {
+    fetch(`/api/search/?query=${searchValue}`)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({ type: ACTIONS.SEARCH_PHOTOS, payload: data });
+      })
+      .catch((error) => {
+        console.error('Error fetching photo data:', error);
+      });
+  };
+
+  const setSearchFormInput = (data) => {
+    dispatch({ type: ACTIONS.TYPE_SEARCH, payload: data });
   };
 
   // Effect to fetch photo data snd topic data
@@ -138,6 +170,8 @@ export default function useApplicationData() {
     isSelected,
     openModal,
     closeModal,
-    getPhotosByTopics
+    getPhotosByTopics,
+    searchPhotos,
+    setSearchFormInput
   };
 }

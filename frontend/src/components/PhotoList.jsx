@@ -7,8 +7,8 @@ const PhotoList = (props) => {
 
   let photoItems;
 
-  if (Array.isArray(props.selectedTopicPhotos) && props.selectedTopicPhotos.length === 0) {
-    photoItems = Array.isArray(props.photos) ? props.photos.map((photo) => {
+  if (Array.isArray(props.searchResults) && props.searchResults.length > 0) {
+    photoItems = Array.isArray(props.searchResults) ? props.searchResults.map((photo) => {
       const selected = props.isSelected(photo.id);
   
       return (
@@ -21,21 +21,37 @@ const PhotoList = (props) => {
         />
       );
     }) : [];
-  } else if (Array.isArray(props.selectedTopicPhotos) && props.selectedTopicPhotos.length > 0) {
-    photoItems = Array.isArray(props.selectedTopicPhotos) ? props.selectedTopicPhotos.map((photo) => {
-      const selected = props.isSelected(photo.id);
-  
-      return (
-        <PhotoListItem
-          key={photo.id}
-          photo={photo}
-          toggleFavorite={() => props.toggleFavorite(photo.id)}
-          selected={selected}
-          onClick={() => props.openModal(photo)}
-          selectedTopicPhotos={props.selectedTopicPhotos}
-        />
-      );
-    }) : [];
+  } else {
+    if (Array.isArray(props.selectedTopicPhotos) && props.selectedTopicPhotos.length === 0) {
+      photoItems = Array.isArray(props.photos) ? props.photos.map((photo) => {
+        const selected = props.isSelected(photo.id);
+    
+        return (
+          <PhotoListItem
+            key={photo.id}
+            photo={photo}
+            toggleFavorite={() => props.toggleFavorite(photo.id)}
+            selected={selected}
+            onClick={() => props.openModal(photo)}
+          />
+        );
+      }) : [];
+    } else if (Array.isArray(props.selectedTopicPhotos) && props.selectedTopicPhotos.length > 0) {
+      photoItems = Array.isArray(props.selectedTopicPhotos) ? props.selectedTopicPhotos.map((photo) => {
+        const selected = props.isSelected(photo.id);
+    
+        return (
+          <PhotoListItem
+            key={photo.id}
+            photo={photo}
+            toggleFavorite={() => props.toggleFavorite(photo.id)}
+            selected={selected}
+            onClick={() => props.openModal(photo)}
+            selectedTopicPhotos={props.selectedTopicPhotos}
+          />
+        );
+      }) : [];
+    }
   }
 
   return (
